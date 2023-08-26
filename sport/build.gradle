@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.example.sport'
+    compileSdkVersion 33
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        missingDimensionStrategy 'DOMAIN', 'china', 'cnbeta', 'oversea'
+//        missingDimensionStrategy 'ENVIRONMENT', 'dev', 'sit', 'demo', 'prd'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false // 不混淆
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true // 混淆
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions('ENVIRONMENT')
+    productFlavors {
+
+        dev {
+            dimension "ENVIRONMENT"
+        }
+        sit {
+            dimension "ENVIRONMENT"
+        }
+        demo {
+            dimension "ENVIRONMENT"
+        }
+        prd {
+            dimension "ENVIRONMENT"
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(':device')
+
+}

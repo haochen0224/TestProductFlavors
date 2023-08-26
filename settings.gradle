@@ -1,0 +1,8 @@
+
+rootProject.name = "testProductFlavors"
+include ':app'
+include ':sport'
+include ':health'
+include ':device'
+include ':watchface'
+include ':home'
